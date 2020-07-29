@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
+const cryptojs = require('crypto-js');
 
 const User = require('../models/user');
 require('dotenv').config();
@@ -8,7 +9,7 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
-                email: req.body.email,
+                email: cryptojs.HmacSHA256(req.body.email, process.env.EMAIL_KEY).toString(), // cryptage de l'email, méthode 'HmacSHA256' SANS salage (pour pouvoir ensuite rechercher l'utilisateur simplement lors du login)
                 password: hash
             });
             user.save()
@@ -19,14 +20,18 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-    User.findOne( { email: req.body.email })
+    const cryptedResearchedEmail = cryptojs.HmacSHA256(req.body.email, process.env.EMAIL_KEY).toString();
+    console.log(cryptedResearchedEmail);
+    User.findOne( { email: cryptedResearchedEmail })
         .then(user => {
             if (!user) {
+                console.log('Utilisateur non trouvé!');
                 return res.status(401).json({ error: 'Utilisateur non trouvé!' })
             }
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
+                        console.log('Mot de passe incorrect!');
                         return res.status(401).json({ error: 'Mot de passe incorrect!' })
                     }
                     res.status(200).json({

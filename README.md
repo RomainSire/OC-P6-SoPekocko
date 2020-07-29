@@ -12,7 +12,7 @@ Pour solutionner le problème, deux options :
   - Mais de ce fait, **coté backend**, puisque Node tourne avec une version ancienne, les dernières versions de certaines dépendances ne peuvent pas être utilisées: notamment bcrypt utilise la version 3.0.0
   - Utiliser la méthode 2 pour utiliser les dernières versions
 2. Deuxième méthode - mettre à jour le frontend fourni :
-  - Changer la version du package frontend qui pose problème : **npm install node-sass@4.12.0 --no-save --unsafe-perm** (à faire avant chaque lancement du front pour ne pas le modifier définitivement)
+  - Changer la version du package frontend qui pose problème : **npm install node-sass@4.12.0 --no-save --unsafe-perm**
   - Réinstaller les packages du backend avec les dernières versions
   - Lancer le backend avec la dernière version de Node.js (^12)
   - front et back devraient fonctionner dorrectement
