@@ -1,6 +1,6 @@
 
 
-## Problèmes de version des dépendances et du frontend
+## Problèmes de version du frontend
 Le [frontend fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) utilise Angular 7, et les dépendances utilisées provoquaient des erreurs sous ma machine (Linux Mint) car la version de Node était trop récente.   
 Pour solutionner le problème, deux options :
 1. Première méthode - utiliser une version de node plus ancienne :
