@@ -42,3 +42,16 @@ exports.sauce = (req, res, next) => {
         next();
     }
 }
+
+/**
+ * Validation de l'id des sauces
+ */
+const idSchema = Joi.string().trim().length(24).required();
+exports.id = (req, res, next) => {
+    const {error, value} = idSchema.validate(req.params.id);
+    if (error) {
+        res.status(422).json({ error: "id de la sauce invalide" });
+    } else {
+        next();
+    }  
+}
