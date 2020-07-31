@@ -16,17 +16,29 @@ exports.user = (req, res, next) => {
     }
 };
 
-
-
-
 /**
  * Validation des données d'entrée lors de l'ajout ou la modification d'une sauce
  */
-
-
-//     body('sauce.*.userId').isLength({ min: 24, max: 24 }).trim().escape(),
-//     body('sauce.*.name').isLength({ min: 10 }),
-//     body('sauce.*.manufacturer').notEmpty().trim().escape(),
-//     body('sauce.*.description').notEmpty().trim().escape(),
-//     body('sauce.*.mainPepper').notEmpty().trim().escape(),
-//     body('sauce.*.heat').isInt({ gt: 1, lt: 10 })
+const sauceSchema = Joi.object({
+    userId: Joi.string().trim().length(24).required(),
+    name: Joi.string().trim().min(1).required(),
+    manufacturer: Joi.string().trim().min(1).required(),
+    description: Joi.string().trim().min(1).required(),
+    mainPepper: Joi.string().trim().min(1).required(),
+    heat: Joi.number().integer().min(1).max(10).required()
+})
+exports.sauce = (req, res, next) => {
+    let sauce;
+    if (req.file) {
+        sauce = JSON.parse(req.body.sauce);
+    } else {
+        sauce = req.body;
+    }
+    
+    const {error, value} = sauceSchema.validate(sauce);
+    if (error) {
+        res.status(422).json({ error: "Les données entrées sont invalides" });
+    } else {
+        next();
+    }
+}
