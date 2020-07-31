@@ -2,19 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const userCtrl = require('../controllers/user');
-const validator = require('../middlewares/validator');
+const validate = require('../middlewares/validate-inputs');
 
-router.post(
-    '/signup',
-    validator.userValidationRules(),
-    validator.validate,
-    userCtrl.signup
-);
-router.post(
-    '/login',
-    validator.userValidationRules(),
-    validator.validate,
-    userCtrl.login
-);
+router.post('/signup', validate.user, userCtrl.signup);
+router.post('/login', validate.user, userCtrl.login);
 
 module.exports = router;
