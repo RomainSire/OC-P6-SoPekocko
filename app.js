@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const fs = require('fs');
+const morgan = require('morgan');
 require('dotenv').config();
 
 const sauceRoutes = require('./routes/sauce');
@@ -18,7 +20,7 @@ mongoose.connect(process.env.MONGODB_PATH,
 const app = express();
 
 // MIDDLEWARES
-// CORS
+// cors
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -27,6 +29,9 @@ app.use((req, res, next) => {
 });
 // Parse le body des requetes en json
 app.use(bodyParser.json());
+// Log toutes les requêtes passées au serveur (sécurité)
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // ROUTES
 app.use('/images', express.static(path.join(__dirname, 'images')));
