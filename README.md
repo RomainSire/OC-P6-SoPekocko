@@ -31,7 +31,7 @@ Développement Backend en Javascript
     - Installer les dépendances: **npm install**
     - Lancer **node server**
 5. Le frontend est accessible à l'adresse http://localhost:4200
-6. Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:3000 (attention: authentification requise pour la plupart des routes)
+6. Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:3000 (attention: authentification requise pour toutes les routes /api/sauces/)
 
 ## Problèmes de version du frontend
 Le [frontend fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) utilise Angular 7, et les dépendances utilisées provoquaient des erreurs sous ma machine (Linux Mint) car la version de Node était trop récente.   

@@ -90,19 +90,19 @@ exports.deleteSauce = (req, res, next) => {
  */
 exports.likeSauce = (req, res, next) => {
     const userId = req.body.userId;
-    const rate = req.body.like;
+    const like = req.body.like;
     const sauceId = req.params.id;
     Sauce.findOne({ _id: sauceId })
         .then(sauce => {
             // nouvelles valeurs à modifier
-            let newValues = {
+            const newValues = {
                 usersLiked: sauce.usersLiked,
                 usersDisliked: sauce.usersDisliked,
                 likes: 0,
                 dislikes: 0
             }
             // Différents cas:
-            switch (rate) {
+            switch (like) {
                 case 1:  // CAS: sauce liked
                     newValues.usersLiked.push(userId);
                     break;
