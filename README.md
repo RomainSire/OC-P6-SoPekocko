@@ -36,7 +36,7 @@ Développement Backend en Javascript
 ## Problèmes de version du frontend
 Le [frontend fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) utilise Angular 7, et les dépendances utilisées provoquaient des erreurs sous ma machine (Linux Mint) car la version de Node était trop récente.   
 Pour solutionner le problème, deux options :
-1. **Première méthode - utiliser une version de node plus ancienne :**
+1. **Première méthode - utiliser une version de node plus ancienne (finalement pas la solution retenue) :**
     - Installation de [nvm pour gérer les versions de Node.js](https://github.com/nvm-sh/nvm)
     - Installation de la version 10.13 de Node.js (**nvm install 10.13**)
     - Utilisation de la version 10.13  (**nvm use 10.13**)
