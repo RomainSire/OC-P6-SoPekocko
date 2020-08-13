@@ -1,4 +1,4 @@
-# OpenClassrooms P6 - API backend SoPekocko
+# OpenClassrooms P6 - API backend SoPekocko "Piquante"
 6ème projet de la formation de [développeur web de OpenClassrooms](https://openclassrooms.com/fr/paths/185-developpeur-web)
 
 ## Scénario
@@ -16,16 +16,19 @@ Développement Backend en Javascript
 - Sécurité **OWASP** et **RGPD**
 
 ## Pour tester l'application
-1. Cloner le [frontend  de l'application fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6), et le lancer : 
+> **:warning: ATTENTION, possible problème de version avec le frontend (cf. ci-dessous) + légères modifications apportées au frontend pour la compatibilité avec les cookies de sessions, merci d'utiliser [la version du frontend mise à jour](https://github.com/RomainSire/OC-P6-SoPekocko-frontend), et non pas celle fournie par OC**
+
+1. Cloner le [frontend  de l'application](https://github.com/RomainSire/OC-P6-SoPekocko-frontend), et le lancer :  
     - Dans un terminal, accéder au dossier du frontend
     - Installer les dépendances: **npm install**
     - Lancer: **ng serve**
-    - :exclamation: attention, possible problème de version (cf. ci-dessous)
-2. Cloner ce repository backend
-3. Ajouter un fichier de configuration nommé **".env"** à la racine du backend. A l'intérieur, 3 variables d'environnement "secrètes" seront définies:
-    - MONGODB_PATH='lien_vers_la_base_de_données_mongoDB'
-    - TOKEN_KEY='clé_secrète_pour_crypter_les_tokens'
-    - EMAIL_KEY='clé_secrète_pour_crypter_les_emails'
+2. Cloner ce repository backend :arrow_down:
+3. Ajouter un fichier de configuration nommé **".env"** à la racine du backend. A l'intérieur, 5 variables d'environnement "secrètes" seront définies:
+    - MONGODB_PATH = 'lien_vers_la_base_de_données_mongoDB'
+    - TOKEN_KEY = 'clé_secrète_pour_crypter_les_tokens'
+    - EMAIL_KEY = 'clé_secrète_pour_crypter_les_emails'
+    - COOKIE_KEY = 'clé_secrète_pou_la_session'
+    - AUTHORIZED_ORIGIN = 'http://localhost:4200'
 4. Lancer le backend
     - Dans un autre terminal, accéder au dossier du backend
     - Installer les dépendances: **npm install**
@@ -36,7 +39,7 @@ Développement Backend en Javascript
 ## Problèmes de version du frontend
 Le [frontend fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) utilise Angular 7, et les dépendances utilisées provoquaient des erreurs sous ma machine (Linux Mint) car la version de Node était trop récente.   
 Pour solutionner le problème, deux options :
-1. **Première méthode - utiliser une version de node plus ancienne (finalement pas la solution retenue) :**
+1. **Première méthode :x: - utiliser une version de node plus ancienne (finalement pas la solution retenue !) :**
     - Installation de [nvm pour gérer les versions de Node.js](https://github.com/nvm-sh/nvm)
     - Installation de la version 10.13 de Node.js (**nvm install 10.13**)
     - Utilisation de la version 10.13  (**nvm use 10.13**)
@@ -44,7 +47,7 @@ Pour solutionner le problème, deux options :
     - Le frontend fonctionne finalement correctement !
     - :exclamation: Mais de ce fait, **coté backend**, puisque Node tourne avec une version ancienne, les dernières versions de certaines dépendances ne peuvent pas être utilisées: notamment bcrypt utilise la version 3.0.0
     - Conclusion : utiliser plutôt la méthode 2 pour pouvoir bénéficier des dernières versions des dépendances utilisées
-2. **Deuxième méthode - mettre à jour le frontend fourni :**
+2. **Deuxième méthode :heavy_check_mark: - mettre à jour le frontend fourni :**
     - Changer la version du package frontend qui pose problème : **npm install node-sass@4.12.0 --no-save --unsafe-perm**
     - Réinstaller les packages du backend avec les dernières versions
     - Lancer le backend avec la dernière version de Node.js (^12)
