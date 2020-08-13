@@ -49,8 +49,8 @@ Développement Backend en Javascript
 5. Le frontend est accessible à l'adresse http://localhost:4200
 6. Pour des tests spécifiques (avec postman par exemple), le backend répond à l'adresse: http://localhost:3000 (attention: authentification requise pour toutes les routes /api/sauces/)
 
-## Problèmes de version du frontend
-Le [frontend fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) utilise Angular 7, et les dépendances utilisées provoquaient des erreurs sous ma machine (Linux Mint) car la version de Node était trop récente.   
+## :information_source: Problèmes de version du frontend
+Le [frontend fourni par OpenClassrooms](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) utilise Angular 7, et les dépendances utilisées provoquaient des erreurs sous ma machine (Linux Mint) car ma version de Node était trop récente.   
 Pour solutionner le problème, deux options :
 1. **Première méthode :x: - utiliser une version de node plus ancienne (finalement pas la solution retenue !) :**
     - Installation de [nvm pour gérer les versions de Node.js](https://github.com/nvm-sh/nvm)
@@ -58,8 +58,8 @@ Pour solutionner le problème, deux options :
     - Utilisation de la version 10.13  (**nvm use 10.13**)
     - Installation de node-sass : principal package qui posait problème dans le frontend (**npm install node-sass**)
     - Le frontend fonctionne finalement correctement !
-    - :exclamation: Mais de ce fait, **coté backend**, puisque Node tourne avec une version ancienne, les dernières versions de certaines dépendances ne peuvent pas être utilisées: notamment bcrypt utilise la version 3.0.0
-    - Conclusion : utiliser plutôt la méthode 2 pour pouvoir bénéficier des dernières versions des dépendances utilisées
+    - :warning: Mais de ce fait, **coté backend**, puisque Node tourne avec une version ancienne, les dernières versions de certaines dépendances ne peuvent pas être utilisées: notamment bcrypt utilise la version 3.0.0
+    - Conclusion : j'ai finalement préféré utiliser la méthode 2 pour pouvoir bénéficier des dernières versions des dépendances utilisées
 2. **Deuxième méthode :heavy_check_mark: - mettre à jour le frontend fourni :**
     - Changer la version du package frontend qui pose problème : **npm install node-sass@4.12.0 --no-save --unsafe-perm**
     - Réinstaller les packages du backend avec les dernières versions
