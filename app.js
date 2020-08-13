@@ -6,6 +6,7 @@ const fs = require('fs');
 const morgan = require('morgan');
 const helmet = require('helmet');
 require('dotenv').config();
+const session = require('express-session');
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
@@ -28,6 +29,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', process.env.AUTHORIZED_ORIGIN);
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    res.setHeader('Access-Control-Allow-Credentials', true);
     next();
 });
 // Parse le body des requetes en json
@@ -37,6 +39,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'),
 app.use(morgan('combined', { stream: accessLogStream }));
 // Sécurise les headers
 app.use(helmet());
+// Utilisation de la session pour stocker de manière persistante le JWT coté front
+app.use(session({ secret: process.env.COOKIE_KEY, cookie: { maxAge: 900000 }})) // cookie stocké pendant 15 min
 
 /**
  * ROUTES

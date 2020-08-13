@@ -31,13 +31,15 @@ exports.login = (req, res, next) => {
                     if (!valid) {
                         return res.status(401).json({ error: 'Mot de passe incorrect!' })
                     }
+                    const newToken = jsonwebtoken.sign(
+                        { userId: user._id },
+                        process.env.TOKEN_KEY,
+                        { expiresIn: '24h' }
+                    );
+                    req.session.token = newToken; // envoi du token en session = création du cookie
                     res.status(200).json({
                         userId: user._id,
-                        token: jsonwebtoken.sign(
-                            { userId: user._id },
-                            process.env.TOKEN_KEY,
-                            { expiresIn: '24h' }
-                        )
+                        token: newToken  // le front attend aussi un token en json, donc obligé de laisser ça
                     })
                 })
         })
