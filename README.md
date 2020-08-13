@@ -7,7 +7,7 @@ Le but est de créer le backend de l'application, le frontend étant déjà cod�
 
 ## Objectifs du projet et compétences évaluées
 Développement Backend en Javascript
-- **Node.js**
+- Serveur **Node.js**
 - Framework **Express**
 - Base de données **MongoDB**
   - Hébergement sur MongoDB Atlas
@@ -15,14 +15,27 @@ Développement Backend en Javascript
 - **API REST**
 - Sécurité **OWASP** et **RGPD**
 
+## Mesures de sécurité mises en place
+- Hashage du mot de passe utilisateur avec **bcrypt**
+- Cryptage des emails utilisateurs dans la base de données avec **crypto-js**
+- Manupulation sécurisée de la base de donnée avec **mongoose**
+- Vérification que l'email utilisateur soit unique dans la base de données avec **mongoose-unique-validator**
+- Utilisation de variables d'environnement pour les données sensibles avec **dotenv**
+- Validation des données utilisateurs avec **@hapi/joi**
+- Authentification de l'utilisateur par token avec **jsonwebtoken**
+- Token d'authentification stocké dans un cookie coté client avec **express-session**
+- Protection des headers avec **helmet**
+- Log de chaque requête effectuée dans un fichier "assess.log" avec **morgan**
+
+
 ## Pour tester l'application
-> **:warning: ATTENTION, possible problème de version avec le frontend (cf. ci-dessous) + légères modifications apportées au frontend pour la compatibilité avec les cookies de sessions, merci d'utiliser [la version du frontend mise à jour](https://github.com/RomainSire/OC-P6-SoPekocko-frontend), et non pas celle fournie par OC**
+> **:warning: ATTENTION, possible problème de version avec le frontend (cf. ci-dessous) + légères modifications apportées au frontend pour la compatibilité avec les cookies de sessions, merci d'utiliser [la version du frontend mise à jour](https://github.com/RomainSire/OC-P6-SoPekocko-frontend), et non pas celle fournie par OpenClassrooms**
 
 1. Cloner le [frontend  de l'application](https://github.com/RomainSire/OC-P6-SoPekocko-frontend), et le lancer :  
     - Dans un terminal, accéder au dossier du frontend
     - Installer les dépendances: **npm install**
     - Lancer: **ng serve**
-2. Cloner ce repository backend :arrow_down:
+2. Cloner [ce repository backend actuel](https://github.com/RomainSire/OC-P6-SoPekocko) :arrow_down:
 3. Ajouter un fichier de configuration nommé **".env"** à la racine du backend. A l'intérieur, 5 variables d'environnement "secrètes" seront définies:
     - MONGODB_PATH = 'lien_vers_la_base_de_données_mongoDB'
     - TOKEN_KEY = 'clé_secrète_pour_crypter_les_tokens'
