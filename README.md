@@ -5,6 +5,9 @@
 Développement d'une application web nommée "Piquante" dans laquelle les utilisateurs pourront ajouter leurs sauces préférées et liker ou disliker les sauces proposées par les autres utilisateurs.  
 Le but est de créer le backend de l'application, le frontend étant déjà codé et fourni.
 
+## Apperçu du rendu
+Voilà [une vidéo qui décrit rapidement le différentes fonctionnalités de l'application](https://youtu.be/UsfzItXufjI)
+
 ## Objectifs du projet et compétences évaluées
 Développement Backend en Javascript
 - Serveur **Node.js**
